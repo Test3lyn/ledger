@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2003-2017, John Wiegley.  All rights reserved.
+ * Copyright (c) 2003-2018, John Wiegley.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -95,8 +95,9 @@ string source_context(const path&            file,
 
 struct error_count {
   std::size_t count;
-  explicit error_count(std::size_t _count) : count(_count) {}
-  const char * what() const { return ""; }
+  std::string message;
+  explicit error_count(std::size_t _count, std::string _msg) : count(_count), message(_msg) {}
+  const char * what() const { return message.c_str(); }
 };
 
 } // namespace ledger
